@@ -1,0 +1,13 @@
+# configmap.yaml
+# Purpose: the page served by httpd. Shows which environment rendered it.
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Release.Name }}-page
+  labels:
+    app.kubernetes.io/name: hello
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/part-of: gitops-agent-workshop
+data:
+  index.html: |
+    <html><body><h1>{{ .Values.message }}</h1><p>environment: {{ .Values.environment }}</p></body></html>

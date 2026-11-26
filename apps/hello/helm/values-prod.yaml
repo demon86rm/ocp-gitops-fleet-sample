@@ -1,0 +1,4 @@
+# values-prod.yaml
+# Purpose: flavour for clusters tagged env=prod.
+environment: prod
+replicaCount: 2

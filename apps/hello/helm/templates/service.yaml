@@ -1,0 +1,17 @@
+# service.yaml
+# Purpose: ClusterIP Service in front of the pods. No LoadBalancer on purpose.
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Release.Name }}
+  labels:
+    app.kubernetes.io/name: hello
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/part-of: gitops-agent-workshop
+spec:
+  selector:
+    app.kubernetes.io/name: hello
+    app.kubernetes.io/instance: {{ .Release.Name }}
+  ports:
+    - port: 8080
+      targetPort: 8080

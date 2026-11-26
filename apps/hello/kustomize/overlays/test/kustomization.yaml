@@ -1,0 +1,13 @@
+# kustomization.yaml
+# Purpose: test flavour of the hello app (replicas and page text).
+resources:
+  - ../../base
+namePrefix: test-
+replicas:
+  - name: hello
+    count: 1
+configMapGenerator:
+  - name: hello-page
+    behavior: replace
+    literals:
+      - 'index.html=<html><body><h1>Hello from the fleet</h1><p>environment: test</p></body></html>'

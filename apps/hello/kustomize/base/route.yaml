@@ -1,0 +1,14 @@
+# route.yaml
+# Purpose: OpenShift Route that exposes the page.
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: hello
+spec:
+  to:
+    kind: Service
+    name: hello
+  port:
+    targetPort: 8080
+  tls:
+    termination: edge

@@ -1,0 +1,18 @@
+# route.yaml
+# Purpose: OpenShift Route that exposes the page.
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: {{ .Release.Name }}
+  labels:
+    app.kubernetes.io/name: hello
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/part-of: gitops-agent-workshop
+spec:
+  to:
+    kind: Service
+    name: {{ .Release.Name }}
+  port:
+    targetPort: 8080
+  tls:
+    termination: edge

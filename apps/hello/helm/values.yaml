@@ -1,0 +1,15 @@
+# values.yaml
+# Purpose: defaults for the hello chart. Flavour files override these.
+environment: dev
+replicaCount: 1
+message: "Hello from the fleet"
+image:
+  repository: registry.access.redhat.com/ubi9/httpd-24
+  tag: latest
+resources:
+  requests:
+    cpu: 25m
+    memory: 64Mi
+  limits:
+    cpu: 200m
+    memory: 128Mi

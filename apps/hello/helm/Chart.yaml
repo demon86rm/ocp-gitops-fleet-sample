@@ -1,0 +1,8 @@
+# Chart.yaml
+# Purpose: Helm chart for the workshop sample web page.
+apiVersion: v2
+name: hello
+description: A tiny web page served by UBI httpd, for the multi-cluster GitOps workshop
+type: application
+version: 0.1.0
+appVersion: "1.0"

@@ -1,0 +1,4 @@
+# values-test.yaml
+# Purpose: flavour for clusters tagged env=test.
+environment: test
+replicaCount: 1

@@ -1,0 +1,15 @@
+# kustomization.yaml
+# Purpose: base of the hello app. Overlays set the environment name and replica count.
+resources:
+  - deployment.yaml
+  - service.yaml
+  - route.yaml
+configMapGenerator:
+  - name: hello-page
+    files:
+      - index.html
+labels:
+  - pairs:
+      app.kubernetes.io/name: hello
+      app.kubernetes.io/part-of: gitops-agent-workshop
+    includeSelectors: true
