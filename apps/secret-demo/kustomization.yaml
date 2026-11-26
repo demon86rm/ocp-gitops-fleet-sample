@@ -1,0 +1,10 @@
+# kustomization.yaml
+# Purpose: demo app that gets its API token from the secret store, not from Git.
+resources:
+  - externalsecret.yaml
+  - deployment.yaml
+labels:
+  - pairs:
+      app.kubernetes.io/name: secret-demo
+      app.kubernetes.io/part-of: gitops-agent-workshop
+    includeSelectors: true

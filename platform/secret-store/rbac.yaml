@@ -1,0 +1,47 @@
+# rbac.yaml
+# Purpose: let eso-reader read secrets in its own namespace only, and check its own permissions.
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: eso-reader
+  namespace: workshop-secrets-source
+rules:
+  - apiGroups: [""]
+    resources: ["secrets"]
+    verbs: ["get", "list", "watch"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: eso-reader
+  namespace: workshop-secrets-source
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: eso-reader
+subjects:
+  - kind: ServiceAccount
+    name: eso-reader
+    namespace: workshop-secrets-source
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: eso-reader-selfsubjectrulesreviews
+rules:
+  - apiGroups: ["authorization.k8s.io"]
+    resources: ["selfsubjectrulesreviews"]
+    verbs: ["create"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: eso-reader-selfsubjectrulesreviews
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: eso-reader-selfsubjectrulesreviews
+subjects:
+  - kind: ServiceAccount
+    name: eso-reader
+    namespace: workshop-secrets-source

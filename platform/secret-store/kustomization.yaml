@@ -1,0 +1,7 @@
+# kustomization.yaml
+# Purpose: platform component. A ClusterSecretStore that reads secrets from one namespace on the same cluster.
+# In a real fleet replace the provider with AWS Secrets Manager, Vault or another store. Applications do not change.
+resources:
+  - serviceaccount.yaml
+  - rbac.yaml
+  - clustersecretstore.yaml

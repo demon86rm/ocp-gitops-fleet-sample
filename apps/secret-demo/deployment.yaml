@@ -1,0 +1,29 @@
+# deployment.yaml
+# Purpose: pod that receives the token as an environment variable. It prints the length, never the value.
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: secret-demo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: secret-demo
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: secret-demo
+    spec:
+      containers:
+        - name: demo
+          image: registry.access.redhat.com/ubi9/ubi-minimal:latest
+          command: ["sh", "-c", "while true; do echo \"token length: ${#API_TOKEN}\"; sleep 30; done"]
+          env:
+            - name: API_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: hello-api-key
+                  key: token
+          resources:
+            requests: {cpu: 10m, memory: 16Mi}
+            limits: {cpu: 50m, memory: 32Mi}
