@@ -18,3 +18,7 @@ Preview locally:
 helm template hello apps/hello/helm -f apps/hello/helm/values-prod.yaml
 oc kustomize apps/hello/kustomize/overlays/prod
 ```
+
+## License
+
+Apache License 2.0, see `LICENSE`.
