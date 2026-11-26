@@ -1,8 +1,7 @@
 # kustomization.yaml
-# Purpose: prod flavour of the hello app (replicas and page text).
+# Purpose: prod flavour of the hello app (replicas and page text). Names stay the same on every cluster..
 resources:
   - ../../base
-namePrefix: prod-
 replicas:
   - name: hello
     count: 2

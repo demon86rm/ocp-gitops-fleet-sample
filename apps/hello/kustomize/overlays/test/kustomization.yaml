@@ -1,8 +1,7 @@
 # kustomization.yaml
-# Purpose: test flavour of the hello app (replicas and page text).
+# Purpose: test flavour of the hello app (replicas and page text). Names stay the same on every cluster..
 resources:
   - ../../base
-namePrefix: test-
 replicas:
   - name: hello
     count: 1
